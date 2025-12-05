@@ -1,0 +1,7 @@
+# OpenAI Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+
+# dbt MCP Configuration  
+DBT_TOKEN=your_dbt_token_here
+DBT_PROD_ENV_ID=your_dbt_production_environment_id
+DBT_MCP_URL=https://cloud.getdbt.com/api/ai/v1/mcp/
