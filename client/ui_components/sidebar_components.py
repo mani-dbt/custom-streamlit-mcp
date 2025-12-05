@@ -1,5 +1,4 @@
 import streamlit as st
-from config import MODEL_OPTIONS
 import traceback
 import os
 from services.mcp_service import connect_to_mcp_servers

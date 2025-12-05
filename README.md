@@ -43,33 +43,13 @@ A Streamlit application that connects to remote dbt MCP servers using OpenAI for
    pip3.11 install -r client/requirements.txt
    ```
 
-3. **Configure environment variables**:
-   Copy the example environment file and fill in your credentials:
-   ```bash
-   cp client/env-example client/.env
-   ```
-   
-   Edit `client/.env`:
-   ```env
-   OPENAI_API_KEY=your_openai_api_key_here
-   DBT_TOKEN=your_dbt_token_here
-   DBT_PROD_ENV_ID=your_dbt_production_environment_id
-   DBT_MCP_URL=https://cloud.getdbt.com/api/ai/v1/mcp/
-   ```
-
-### Getting dbt Credentials
-
-1. **dbt Token**: Get from dbt Cloud → Account Settings → API Tokens
-2. **Production Environment ID**: Found in dbt Cloud → Orchestration page
+3. **Configuration**:
+   All configuration is done through the Streamlit UI - no environment files needed!
 
 ## Running the App
 
-### Option 1: Using the run script with Python 3.11
-```bash
-python3.11 run_local.py
-```
+From the project root directory:
 
-### Option 2: Direct streamlit command with Python 3.11
 ```bash
 cd client
 python3.11 -m streamlit run app.py
@@ -81,9 +61,16 @@ The app will be available at `http://localhost:8501`
 
 ## Usage
 
-1. **Configure API Keys**: Enter your OpenAI API key in the sidebar
-2. **Configure dbt**: Enter your dbt token and environment ID
+1. **Configure OpenAI**: Enter your OpenAI API key in the sidebar
+   - Get your API key from [OpenAI Platform](https://platform.openai.com/)
+   
+2. **Configure dbt Cloud**: Enter your dbt credentials in the sidebar
+   - **dbt Token**: Get from dbt Cloud → Account Settings → API Tokens
+   - **Production Environment ID**: Found in dbt Cloud → Orchestration page
+   - **dbt Host URL**: Usually `cloud.getdbt.com` (default)
+   
 3. **Connect to dbt MCP**: Click "Connect to dbt MCP Server"
+
 4. **Start Chatting**: Ask questions about your dbt project and data
 
 ## Available dbt Tools

@@ -7,7 +7,6 @@ from services.chat_service import get_current_chat, _append_message_to_session
 from utils.async_helpers import run_async
 from utils.ai_prompts import make_system_prompt, make_main_prompt
 import ui_components.sidebar_components as sd_compents
-from config import DEFAULT_MAX_TOKENS, DEFAULT_TEMPERATURE
 import traceback
 
 def main():
