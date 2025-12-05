@@ -20,7 +20,9 @@ DBT_MCP_CONFIG = {
             "url": env("DBT_MCP_URL", "https://cloud.getdbt.com/api/ai/v1/mcp/"),
             "headers": {
                 "Authorization": f"token {env('DBT_TOKEN')}",
-                "x-dbt-prod-environment-id": env("DBT_PROD_ENV_ID")
+                "x-dbt-prod-environment-id": env("DBT_PROD_ENV_ID"),
+                # Disable SQL tools that require additional headers (x-dbt-user-id, x-dbt-dev-environment-id)
+                "x-dbt-disable-tools": "text_to_sql,execute_sql"
             },
             "timeout": 30
         }

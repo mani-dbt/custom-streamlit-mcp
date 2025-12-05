@@ -92,8 +92,8 @@ The app connects to dbt's remote MCP server which provides tools for:
 
 - **Discovery**: Get dbt models, relationships, and metadata
 - **Semantic Layer**: Query metrics, dimensions, and entities
-- **dbt CLI**: Run dbt commands (build, test, compile, etc.)
-- **SQL Generation**: Generate and execute SQL queries
+
+**Note**: SQL tools (`text_to_sql` and `execute_sql`) are disabled by default as they require additional configuration (user ID and development environment ID). The app focuses on consumption-based use cases through the Semantic Layer.
 
 ## Architecture
 

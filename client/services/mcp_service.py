@@ -13,7 +13,7 @@ from utils.async_helpers import run_async
 class RemoteMCPClient:
     """Thin wrapper around a remote dbt MCP server using the agents SDK."""
     
-    def __init__(self, url: str, headers: Dict[str, str], timeout_seconds: int = 20,
+    def __init__(self, url: str, headers: Dict[str, str], timeout_seconds: int = 60,
                  allowed_tool_names: Optional[List[str]] = None):
         self.url = url
         self.headers = headers
@@ -185,10 +185,17 @@ async def setup_mcp_client() -> RemoteMCPClient:
     headers = {
         "Authorization": f"token {dbt_token}",
         "x-dbt-prod-environment-id": prod_env_id,
+        # Disable SQL tools that require additional headers (x-dbt-user-id, x-dbt-dev-environment-id)
+        "x-dbt-disable-tools": "text_to_sql,execute_sql",
     }
 
-    client = RemoteMCPClient(url=url, headers=headers)
-    return await client.connect()
+    try:
+        client = RemoteMCPClient(url=url, headers=headers)
+        return await client.connect()
+    except Exception as e:
+        # Provide more detailed error information
+        error_msg = f"Failed to connect to dbt MCP server at {url}: {str(e)}"
+        raise ConnectionError(error_msg) from e
 
 
 async def run_agent(client: "RemoteMCPClient", message: str, api_key: str) -> Dict:
